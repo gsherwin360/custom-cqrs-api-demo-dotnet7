@@ -8,10 +8,6 @@ public class GetAllCustomersQueryHandler : IQueryHandler<GetAllCustomersQuery, L
 {
     public Task<List<Customer>> Handle(GetAllCustomersQuery request, CancellationToken cancellationToken = default)
     {
-        var customers = new List<Customer> {
-            Customer.Create("Sherwin", "Gonzales", "Male", "Philippines")
-        };
-
-        return Task.FromResult(customers);
+        return Task.FromResult(CustomerManager.GetAllCustomers());
     }
 }
