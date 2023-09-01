@@ -44,4 +44,13 @@ public class CustomersController : ControllerBase
 
         return this.Ok(result);
     }
+
+    [HttpGet("{id}")]
+    [AllowAnonymous]
+    public async Task<IActionResult> GetCustomer(Guid id)
+    {
+        var result = await this.queryBus.Query<GetCustomerByIdQuery, Customer>(new GetCustomerByIdQuery(id));
+
+        return result is not null ? this.Ok(result) : this.NotFound();
+    }
 }
